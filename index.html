@@ -1739,11 +1739,16 @@
   document.querySelectorAll('.yr-btn').forEach(function(b){ const d = DATA[b.getAttribute('data-year')]; if(d) b.querySelector('.yr-sub').textContent = d.items.length + ' itens'; });
 
   // Listas prontas com cotação. Preços de referência: CÍVICO MILITAR FINAL 2027.xlsx (cotação de 16/10/2026),
-  // os mesmos já usados nas páginas do Invictus e do Leon.
+  // os mesmos já usados nas páginas do Invictus e do Uniterp (varredura de 29/10/2026 acrescentou guache 6 cores,
+  // caderno de caligrafia, cola de 1 kg e papel criativo, que estavam no catálogo do Cívico).
   // p = [marca, valor unitário] da lista PREMIUM; e = [marca, valor unitário] da lista ECONÔMICA; a = preço de item semelhante (≈);
-  // semPreco = item que casa com outra regra mas ainda não tem preço (ex.: cola de 1 kg).
+  // semPreco = item que casa com outra regra mas ainda não tem preço (ex.: cola de 500 ml, gesso de 1 kg).
   const PRICE_RULES = [
+    { re:/^(tubo de )?cola branca (de )?1 kg/i, p:["MARIPEL",23.9], e:["MARIPEL",23.9], a:1 },
     { re:/1 ?kg|500 ml/i, semPreco:1 },
+    { re:/^caixa de tinta guache 6 cores/i, p:["ACRILEX",4.9], e:["MARIPEL",4.7] },
+    { re:/^caderno de caligrafia/i, p:["JANDAIA",10.3], e:["JANDAIA",10.3] },
+    { re:/^(bloco|pacote) de papel criativo/i, p:["RIDET",15.7], e:["RIDET",15.7], a:1 },
     { re:/^resma de papel sulfite (branco )?A4/i, p:["REPORT",25.9], e:["ONE PAPER",23.9] },
     { re:/^pastas? polionda com elástico/i, p:["POLIBRAS",5.9], e:["POLIBRAS",5.9] },
     { re:/^pastas? polionda A4/i, p:["POLIBRAS",5.9], e:["POLIBRAS",5.9], a:1 },
