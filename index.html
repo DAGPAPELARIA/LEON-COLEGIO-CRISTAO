@@ -1749,6 +1749,7 @@
   // semPreco = item que casa com outra regra mas ainda não tem preço (ex.: cola de 500 ml, gesso de 1 kg).
   const PRICE_RULES = [
     { re:/^(tubo de )?cola branca (de )?1 kg/i, p:["MARIPEL",23.9], e:["MARIPEL",23.9], a:1 },
+    { re:/^pote de cola branca 500 ml/i, p:["MARIPEL",11.95], e:["MARIPEL",11.95], a:1 },
     { re:/1 ?kg|500 ml/i, semPreco:1 },
     { re:/^caixa de tinta guache 6 cores/i, p:["ACRILEX",4.9], e:["MARIPEL",4.7] },
     { re:/^caderno de caligrafia/i, p:["JANDAIA",10.3], e:["JANDAIA",10.3] },
@@ -1836,7 +1837,23 @@
     { re:/^alfabeto móvel/i, p:["EVAMAX",3.9], e:["EVAMAX",3.9] },
     { re:/churrasco/i, p:["DIVERSOS",3.9], e:["DIVERSOS",3.9], a:1 },
     { re:/prendedor/i, p:["TANABI",3.4], e:["TANABI",3.4] },
-    { re:/olhinho/i, p:["",3.9], e:["",3.9] }
+    { re:/olhinho/i, p:["",3.9], e:["",3.9] },
+    // 2ª busca (29/10/2026): nada idêntico nas listas do Invictus, Cívico e Uniterp; preços de produtos parecidos (≈),
+    // aplicados com OK do usuário em 30/10/2026. Detalhe da origem de cada um na planilha de itens sem preço (coluna L).
+    { re:/papel laminado/i, p:["BRW",1.3], e:["BRW",1.3], a:1 },
+    { re:/camurça/i, p:["BRW",1.3], e:["BRW",1.3], a:1 },
+    { re:/^fita crepe (fina|larga) 48 mm x 5/i, p:["KORETECH",2.9], e:["KORETECH",2.9], a:1 },
+    { re:/^(potes?|pacotes?) de glitter/i, p:["HONEY",0.9], e:["HONEY",0.5], a:1 },
+    { re:/sulfite branco A4.*100 folhas/i, p:["REPORT",5.98], e:["ONE PAPER",4.78], a:1 },
+    { re:/^caderno (brochura )?capa dura( A4)?, 48 folhas/i, p:["FORONI",9.9], e:["JANDAIA",9.3], a:1 },
+    { re:/^caixa de tinta guache 12 cores/i, p:["ACRILEX",9.8], e:["MARIPEL",9.4], a:1 },
+    { re:/^dicionário de inglês escolar oxford/i, p:["MICHAELIS",102], e:["MICHAELIS",102], a:1 },
+    { re:/^dicionário de inglês$/i, p:["SCOTTINI",6.3], e:["SCOTTINI",6.3], a:1 },
+    { re:/^folha quadriculada A3/i, p:["CHAMEX",0.2], e:["CHAMEX",0.2], a:1 },
+    { re:/^caixa de cola glitter 4/i, p:["ACRILEX",8.9], e:["ACRILEX",8.9], a:1 },
+    { re:/^pacote de papel dobradura/i, p:["BRASILEIRINHO",10.9], e:["BRASILEIRINHO",10.9], a:1 },
+    { re:/^pacotes? de massinha 150 g/i, p:["UTI GUTI",6.4], e:["UTI GUTI",6.4], a:1 },
+    { re:/^tintas? de tecido/i, p:["ACRILEX",7.6], e:["ACRILEX",7.6], a:1 }
   ];
   // itens que a família já tem ou compra em loja especializada: não entram no valor da cotação
   const FORA_RX = /^(livro|revistas?|revista ou jornal|flauta|bíblia)/i;
