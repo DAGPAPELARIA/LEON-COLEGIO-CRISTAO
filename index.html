@@ -1809,8 +1809,6 @@
     { re:/^conjunto de canetinhas/i, p:["ACRILEX",14.9], e:["ACRILEX",14.9] },
     { re:/^caixa de lápis de cor jumbo/i, p:["FABER-CASTELL",17.9], e:["FABER-CASTELL",17.9], a:1 },
     { re:/^caixa de lápis de cor 12 cores/i, p:["FABER-CASTELL",17.9], e:["FABER-CASTELL",17.9] },
-    { re:/^estojo com 3/i, p:["FABRICAÇÃO PRÓPRIA",23.9], e:["FABRICAÇÃO PRÓPRIA",23.9] },
-    { re:/^estojo$/i, p:["FABRICAÇÃO PRÓPRIA",13.9], e:["FABRICAÇÃO PRÓPRIA",13.9] },
     { re:/^compasso/i, p:["FUTURO OFFICE",7.9], e:["FUTURO OFFICE",7.9] },
     { re:/^esquadro 30° e 45°/i, p:["WALEU",3.8], e:["WALEU",3.8] },
     { re:/^esquadro/i, p:["WALEU",1.9], e:["WALEU",1.9] },
@@ -1879,7 +1877,8 @@
     { re:/pompom/i, p:["",73.1], e:["",73.1] }
   ];
   // itens que a família já tem ou compra em loja especializada: não entram no valor da cotação
-  const FORA_RX = /^(livro|revistas?|revista ou jornal|flauta|bíblia)/i;
+  // (estojo retirado da cotação a pedido do usuário em 06/11/2026)
+  const FORA_RX = /^(livro|revistas?|revista ou jornal|flauta|bíblia|estojo)/i;
 
   const KIT_INFO = {
     premium:   { nome: "Lista PREMIUM",   icone: "⭐", sub: "Marcas de referência, qualidade máxima", k: "p" },
