@@ -2235,7 +2235,7 @@
       ["wheel","touchstart","keydown"].forEach(function(ev){ window.addEventListener(ev, function(){ mexeu = true; }, {once:true, passive:true}); });
       function irParaLista(){
         if(mexeu) return;
-        var lh = document.querySelector(".list-head");
+        var pn = document.getElementById("panel-"+turma); var lh = pn ? pn.querySelector(".list-head") : null;
         slot.style.scrollMarginTop = ((lh ? lh.getBoundingClientRect().height : 60) + 12) + "px";
         slot.scrollIntoView({block:"start"});
       }
