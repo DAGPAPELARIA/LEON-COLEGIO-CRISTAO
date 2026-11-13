@@ -2210,6 +2210,39 @@
       dismissBubble();
     });
   }
+  // Link direto para uma lista pronta (usado nos QR codes da lista escolar impressa):
+  //   ?turma=g3&lista=premium                 -> abre a turma G3 com a lista PREMIUM aberta
+  //   ?turma=8anor&lista=economica&integral=1 -> idem, ECONÔMICA, com o Período Integral
+  // Sem esses parâmetros o site funciona exatamente como antes.
+  (function(){
+    try{
+      var q = new URLSearchParams(location.search);
+      var turma = q.get("turma"), tipo = q.get("lista");
+      if(!turma || !DATA[turma]) return;
+      setYear(turma);
+      var querInt = q.get("integral") === "1";
+      var cb = document.querySelector('[data-integral="'+turma+'"]');
+      if(cb && cb.checked !== querInt){ cb.checked = querInt; cb.dispatchEvent(new Event("change", {bubbles:true})); }
+      if(tipo === "premium" || tipo === "economica"){
+        var btn = document.querySelector('[data-kit="kit-'+turma+'-'+tipo+'"]');
+        if(btn) btn.click();
+      }
+      var slot = document.getElementById("kits-"+turma);
+      if(!slot) return;
+      // leva a tela até as listas prontas, deixando o cabeçalho fixo da turma de fora; repete uma vez
+      // depois que as fontes carregam, a menos que a pessoa já tenha começado a rolar a página
+      var mexeu = false;
+      ["wheel","touchstart","keydown"].forEach(function(ev){ window.addEventListener(ev, function(){ mexeu = true; }, {once:true, passive:true}); });
+      function irParaLista(){
+        if(mexeu) return;
+        var lh = document.querySelector(".list-head");
+        slot.style.scrollMarginTop = ((lh ? lh.getBoundingClientRect().height : 60) + 12) + "px";
+        slot.scrollIntoView({block:"start"});
+      }
+      setTimeout(irParaLista, 350);
+      setTimeout(irParaLista, 1300);
+    }catch(e){}
+  })();
 })();
 </script>
 
